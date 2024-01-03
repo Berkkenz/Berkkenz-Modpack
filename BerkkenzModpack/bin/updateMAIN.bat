@@ -5,6 +5,7 @@ echo Checking Dependancies...
 
 :: Winget Check
 :wingetcheck
+cls
 echo WingetCheck
 if not exist "%LocalAppData%\Microsoft\WindowsApps\winget.exe" (
 	start /wait "%~dp0\bin\wingetinstaller.ps1"
@@ -62,14 +63,9 @@ if errorlevel 1 (
 
 :versioncheck
 echo Version Check
-set "repo_owner=Berkkenz"
-set "repo_name=Berkkenz-Modpack"
-set "file_path=BerkkenzModpack/1.0.txt"
-set "github_token=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"
+set "api_url=https://api.github.com/repos/Berkkenz/Berkkenz-Modpack/contents/BerkkenzModpack/1.0.txt"
 
-set "api_url=https://api.github.com/repos/%repo_owner%/%repo_name%/contents/%file_path%"
-
-curl -H "Authorization: token %github_token%" -s %api_url% > response.json
+curl -H "Authorization: token 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" -s %api_url% > response.json
 
 set "content="
 for /f "tokens=* delims=" %%a in ('type response.json ^| jq -r ".content"') do set "content=%%a"
@@ -77,16 +73,15 @@ for /f "tokens=* delims=" %%a in ('type response.json ^| jq -r ".content"') do s
 if "%content%" neq "null" (
    echo File exists in the repository.
    pause
+   goto :exit
 ) else (
    echo File does not exist in the repository.
    pause
    goto :versiondownload
 )
 
-del response.json
-goto :exit
-
 :versiondownload
+del response.json
 if not exist "%userprofile%\Desktop\BerkkenzModpack" (
     echo Cloning repository...
     git clone "https://github.com/Berkkenz/Berkkenz-Modpack.git" "%userprofile%\Desktop\BerkkenzModpack"
