@@ -63,22 +63,19 @@ if errorlevel 1 (
 
 :versioncheck
 echo Version Check
-set "api_url=https://api.github.com/repos/Berkkenz/Berkkenz-Modpack/contents/BerkkenzModpack/1.0.txt"
+curl -s -o response.json github_api=https://api.github.com/repos/Berkkenz/Berkkenz-Modpack/contents/BerkkenzModpack/1.0.txt
+for /f "tokens=*" %%a in ('type response.json') do set "json=!json!%%a"
+set "file_exists=false"
+for /f "tokens=2 delims=:" %%a in ('echo %json% ^| find "type"') do (
+    if "%%a"=="\"file\"" set "file_exists=true"
+)
 
-curl -H "Authorization: token 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" -s %api_url% > response.json
-
-set "content="
-for /f "tokens=* delims=" %%a in ('type response.json ^| jq -r ".content"') do set "content=%%a"
-
-if "%content%" neq "null" (
-	cls
-   echo Files Up-To-Date!
-   timeout 3
-   goto :exit
+if %file_exists%==true (
+    echo File exists in the GitHub repository.
+	pause
 ) else (
-   echo Starting Update...
-   timeout 3
-   goto :versiondownload
+    echo File does not exist in the GitHub repository.
+	pause
 )
 
 :versiondownload
