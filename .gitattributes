@@ -2,3 +2,4 @@
 * text=auto
 E:/Git/Repository/Berkkenz-Modpack/BerkkenzModpack/mods/ filter=lfs diff=lfs merge=lfs -text
 E:/Git/Repository/Berkkenz-Modpack/BerkkenzModpack/mods/** filter=lfs diff=lfs merge=lfs -text
+E:/Git/Repository/Berkkenz-Modpack/BerkkenzModpack/bin/jre-8u391-windows-x64.exe filter=lfs diff=lfs merge=lfs -text
