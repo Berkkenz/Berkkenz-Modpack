@@ -71,12 +71,13 @@ set "content="
 for /f "tokens=* delims=" %%a in ('type response.json ^| jq -r ".content"') do set "content=%%a"
 
 if "%content%" neq "null" (
-   echo File exists in the repository.
-   pause
+	cls
+   echo Files Up-To-Date!
+   timeout 3
    goto :exit
 ) else (
-   echo File does not exist in the repository.
-   pause
+   echo Starting Update...
+   timeout 3
    goto :versiondownload
 )
 
@@ -90,6 +91,9 @@ if not exist "%userprofile%\Desktop\BerkkenzModpack" (
     cd "%userprofile%\Desktop\BerkkenzModpack"
     git pull origin master  REM or replace 'master' with the branch you want to pull
 )
+
+msg * "Files Are Updated, Restarting Installer...
+timeout 5
 
 :exit
 endlocal
