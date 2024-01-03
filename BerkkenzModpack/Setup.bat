@@ -1,6 +1,4 @@
 @echo off
-set logFile=%~dp0\log.txt
-echo %DATE% %TIME% Script started. >> "%logFile%"
 
 call "%~dp0\bin\updateMAIN.bat"
 
@@ -64,7 +62,7 @@ set "installer=%userprofile%\Downloads\jdk-17.0.9_windows-x64_bin.exe"
 echo Downloading Java 17.0.9...
 bitsadmin /transfer "Downloading Java Runtime 17.0.9" %url% %installer%
 echo Installing Java 17.0.9
-start /WAIT %userprofile%\Downloads\jdk-17.0.9_windows-x64_bin.exe /s >> %logFile%
+start /WAIT %userprofile%\Downloads\jdk-17.0.9_windows-x64_bin.exe /s
 del %installer% /s
 if errorlevel 1 (
 	echo Failed to Install Java 17.0.9.
@@ -105,30 +103,30 @@ if errorlevel 1 (
 cls
 echo Installing Mods and Configs...
 echo Deleting Old "mods" Folder in ".minecraft"
-DEL "%AppData%\.minecraft\mods" /Q >> "%logFile%"
+DEL "%AppData%\.minecraft\mods" /Q
 echo Deleted "mods" Folder in ".minecraft"
 echo Deleting Old "config" Folder in ".minecraft"
-DEL "%AppData%\.minecraft\config" /Q >> "%logFile%"
+DEL "%AppData%\.minecraft\config" /Q
 echo Deleted "config" Folder in ".minecraft"
 echo Deleting Old "resourcepacks" Folder in ".minecraft"
-DEL "%AppData%\.minecraft\resourcepacks" /Q >> "%logFile%"
+DEL "%AppData%\.minecraft\resourcepacks"
 echo Deleted "resourcepacks" Folder in ".minecraft"
 echo Deleting Old "shaderpacks" Folder in ".minecraft"
-DEL "%AppData%\.minecraft\shaderpacks" /Q >> "%logFile%"
+DEL "%AppData%\.minecraft\shaderpacks" /Q >>
 echo Deleted "shaderpacks" Folder in ".minecraft"
 echo Copying Mods to ".minecraft"
-COPY "%~dp0\mods" "%AppData%\.minecraft\mods" >> "%logFile%"
+COPY "%~dp0\mods" "%AppData%\.minecraft\mods" >>
 echo Copied Mods to ".minecraft"
 echo Copying Configs to ".minecraft"
-COPY "%~dp0\config" "%AppData%\.minecraft\config" >> "%logFile%"
+COPY "%~dp0\config" "%AppData%\.minecraft\config" >>
 echo Copied Configs to ".minecraft"
 echo Copying Resourcepacks to ".minecraft"
-COPY "%~dp0\resourcepacks" "%AppData%\.minecraft\resourcepacks" >> "%logFile%"
+COPY "%~dp0\resourcepacks" "%AppData%\.minecraft\resourcepacks"
 echo Copied Resourcepacks to ".minecraft"
 echo Copying Shaderpacks to ".minecraft"
 COPY "%~dp0\shaderpacks" "%AppData%\.minecraft\shaderpacks"
 echo Copied Shaderpacks to ".minecraft"
-echo %DATE% %TIME% Mods, Configs and Resourcepacks Installed. >> "%logFile%"
+echo %DATE% %TIME% Mods, Configs and Resourcepacks Installed. >>
 echo Mods and Configs Installed!
 echo Now Exiting...
 timeout 3
@@ -150,5 +148,4 @@ pause
 goto :exit
 
 :exit
-echo %DATE% %TIME% Script completed successfully. >> "%logFile%"
 exit
