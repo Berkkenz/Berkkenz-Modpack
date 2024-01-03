@@ -2,7 +2,7 @@
 set logFile=%~dp0\log.txt
 echo %DATE% %TIME% Script started. >> "%logFile%"
 
-start /WAIT %~dp0\bin\updateEXEC.bat
+call "%~dp0\bin\updateMAIN.bat"
 
 echo Starting Berkkenz Modpack Installation.
 timeout 4
