@@ -1,21 +1,15 @@
 @echo off
-set "logFile=C:\Users\%Username%\Desktop\BerkkenzModpack\script_log.txt"
+set logFile=%~dp0\log.txt
 echo %DATE% %TIME% Script started. >> "%logFile%"
 
 echo Starting Berkkenz Modpack Installation.
 timeout 4
 cls
+REM Minecraft Check
 if exist "C:\Users\%Username%\AppData\Roaming\.minecraft" (
-    goto :DesktopCheck
-) else (
-    goto :NoMC
-)
-
-:DesktopCheck
-if exist "C:\Users\%Username%\Desktop\BerkkenzModpack" (
     goto :JavaCheck
 ) else (
-    goto :NoFolder
+    goto :NoMC
 )
 
 :JavaCheck
@@ -102,16 +96,16 @@ echo Deleting Old "shaderpacks" Folder in ".minecraft"
 DEL "E:\CurseForge\Instances\Berkken's Modpack (1)\shaderpacks" /Q >> "%logFile%"
 echo Deleted "shaderpacks" Folder in ".minecraft"
 echo Copying Mods to ".minecraft"
-COPY "C:\Users\%username%\Desktop\BerkkenzModpack\mods" "C:\Users\%username%\AppData\Roaming\.minecraft\mods" >> "%logFile%"
+COPY "%~dp0\mods" "C:\Users\%username%\AppData\Roaming\.minecraft\mods" >> "%logFile%"
 echo Copied Mods to ".minecraft"
 echo Copying Configs to ".minecraft"
-COPY "C:\Users\%username%\Desktop\BerkkenzModpack\config" "C:\Users\%username%\AppData\Roaming\.minecraft\config" >> "%logFile%"
+COPY "%~dp0\config" "C:\Users\%username%\AppData\Roaming\.minecraft\config" >> "%logFile%"
 echo Copied Configs to ".minecraft"
 echo Copying Resourcepacks to ".minecraft"
-COPY "C:\Users\%username%\Desktop\BerkkenzModpack\resourcepacks" "C:\Users\%username%\AppData\Roaming\.minecraft\resourcepacks" >> "%logFile%"
+COPY "%~dp0\resourcepacks" "C:\Users\%username%\AppData\Roaming\.minecraft\resourcepacks" >> "%logFile%"
 echo Copied Resourcepacks to ".minecraft"
 echo Copying Shaderpacks to ".minecraft"
-COPY "C:\Users\%username%\Desktop\BerkkenzModpack\shaderpacks" "C:\Users\%username%\AppData\Roaming\.minecraft\shaderpacks"
+COPY "%~dp0\shaderpacks" "C:\Users\%username%\AppData\Roaming\.minecraft\shaderpacks"
 echo Copied Shaderpacks to ".minecraft"
 echo %DATE% %TIME% Mods, Configs and Resourcepacks Installed. >> "%logFile%"
 echo Mods and Configs Installed!
