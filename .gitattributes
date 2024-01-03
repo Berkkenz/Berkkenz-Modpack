@@ -1,2 +1,4 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+E:/Git/Repository/Berkkenz-Modpack/BerkkenzModpack/mods/ filter=lfs diff=lfs merge=lfs -text
+E:/Git/Repository/Berkkenz-Modpack/BerkkenzModpack/mods/** filter=lfs diff=lfs merge=lfs -text
