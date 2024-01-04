@@ -63,14 +63,10 @@ if errorlevel 1 (
 
 :versioncheck
 echo Version Check
-curl -s -o response.json https://raw.githubusercontent.com/Berkkenz/Berkkenz-Modpack/main/BerkkenzModpack/1.0.txt
-if exist response.json (
-    set "file_exists=true"
-) else (
-    set "file_exists=false"
-)
-
-if %file_exists%==true (
+powershell -command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Berkkenz/Berkkenz-Modpack/main/BerkkenzModpack/1.0.txt', 'response.txt')"
+pause
+if exist response.txt (
+	set "updated="
     echo You Are Up-To-Date!
 	timeout 4 /nobreak
 	goto :exit
@@ -92,6 +88,7 @@ if not exist "C:\Users\%username%\Desktop\BerkkenzModpack" (
     git pull origin main  REM or replace 'master' with the branch you want to pull
 )
 
+set "updated=true"
 msg * "Files Are Updated, Restarting Installer...
 timeout /nobreak 5
 

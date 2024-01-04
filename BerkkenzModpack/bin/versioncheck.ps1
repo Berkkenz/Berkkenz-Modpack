@@ -1,0 +1,1 @@
+powershell -command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Berkkenz/Berkkenz-Modpack/main/BerkkenzModpack/1.0.txt', 'response.txt')"
