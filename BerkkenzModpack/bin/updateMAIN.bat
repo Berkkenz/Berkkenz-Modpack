@@ -63,11 +63,11 @@ if errorlevel 1 (
 
 :versioncheck
 echo Version Check
-curl -s -o response.json github_api=https://api.github.com/repos/Berkkenz/Berkkenz-Modpack/contents/BerkkenzModpack/1.0.txt
-for /f "tokens=*" %%a in ('type response.json') do set "json=!json!%%a"
-set "file_exists=false"
-for /f "tokens=2 delims=:" %%a in ('echo %json% ^| find "type"') do (
-    if "%%a"=="\"file\"" set "file_exists=true"
+curl -s -o response.json https://raw.githubusercontent.com/Berkkenz/Berkkenz-Modpack/main/BerkkenzModpack/1.0.txt
+if exist response.json (
+    set "file_exists=true"
+) else (
+    set "file_exists=false"
 )
 
 if %file_exists%==true (
@@ -80,12 +80,12 @@ if %file_exists%==true (
 
 :versiondownload
 del response.json
-if not exist "%userprofile%\Desktop\BerkkenzModpack" (
+if not exist "C:\Users\%username%\Desktop\BerkkenzModpack" (
     echo Cloning repository...
     git clone "https://github.com/Berkkenz/Berkkenz-Modpack.git" "%userprofile%\Desktop\BerkkenzModpack"
 ) else (
     echo Updating repository...
-    cd "%userprofile%\Desktop\BerkkenzModpack"
+    cd "C:\Users\%username%\Desktop\BerkkenzModpack"
     git pull origin main  REM or replace 'master' with the branch you want to pull
 )
 
