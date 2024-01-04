@@ -71,10 +71,13 @@ if exist response.json (
 )
 
 if %file_exists%==true (
-    echo File exists in the GitHub repository.
-	pause
+    echo You Are Up-To-Date!
+	timeout 4 /nobreak
+	goto :exit
 ) else (
-    echo File does not exist in the GitHub repository.
+    echo Starting Update for Berkkenz Modpack...
+	timeout 4 /nobreak
+	goto :versiondownload
 	pause
 )
 
@@ -82,7 +85,7 @@ if %file_exists%==true (
 del response.json
 if not exist "C:\Users\%username%\Desktop\BerkkenzModpack" (
     echo Cloning repository...
-    git clone "https://github.com/Berkkenz/Berkkenz-Modpack.git" "%userprofile%\Desktop\BerkkenzModpack"
+    git clone "https://github.com/Berkkenz/Berkkenz-Modpack.git" "C:\Users\%username%\Desktop\BerkkenzModpack"
 ) else (
     echo Updating repository...
     cd "C:\Users\%username%\Desktop\BerkkenzModpack"
@@ -90,7 +93,7 @@ if not exist "C:\Users\%username%\Desktop\BerkkenzModpack" (
 )
 
 msg * "Files Are Updated, Restarting Installer...
-timeout 5
+timeout /nobreak 5
 
 :exit
 endlocal

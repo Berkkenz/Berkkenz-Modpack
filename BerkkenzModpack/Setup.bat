@@ -109,7 +109,7 @@ echo Deleting Old "config" Folder in ".minecraft"
 DEL "%AppData%\.minecraft\config" /Q
 echo Deleted "config" Folder in ".minecraft"
 echo Deleting Old "resourcepacks" Folder in ".minecraft"
-DEL "%AppData%\.minecraft\resourcepacks"
+DEL "%AppData%\.minecraft\resourcepacks" /Q
 echo Deleted "resourcepacks" Folder in ".minecraft"
 echo Deleting Old "shaderpacks" Folder in ".minecraft"
 DEL "%AppData%\.minecraft\shaderpacks" /Q >>
