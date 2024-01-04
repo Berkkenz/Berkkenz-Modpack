@@ -66,10 +66,12 @@ echo Version Check
 powershell -command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Berkkenz/Berkkenz-Modpack/main/BerkkenzModpack/1.0.txt', 'response.txt')"
 if exist response.txt (
 	set "updated="
+	cls
     echo You Are Up-To-Date!
 	timeout 4 /nobreak
 	goto :exit
 ) else (
+	cls
     echo Starting Update for Berkkenz Modpack...
 	timeout 4 /nobreak
 	goto :versiondownload
@@ -82,7 +84,7 @@ if not exist "C:\Users\%username%\Desktop\BerkkenzModpack" (
     git clone "https://github.com/Berkkenz/Berkkenz-Modpack.git" "C:\Users\%username%\Desktop\BerkkenzModpack"
 ) else (
     echo Updating repository...
-    cd "C:\Users\%username%\Desktop\BerkkenzModpack"
+    cd /d "C:\Users\%username%\Desktop\BerkkenzModpack"
     git pull origin main
 )
 
