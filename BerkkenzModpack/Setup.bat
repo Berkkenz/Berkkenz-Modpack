@@ -2,6 +2,7 @@
 
 call "%~dp0\bin\updateMAIN.bat"
 
+cls
 echo Starting Berkkenz Modpack Installation.
 timeout 4
 cls
@@ -117,13 +118,13 @@ echo Deleting Old "resourcepacks" Folder in ".minecraft"
 DEL "%AppData%\.minecraft\resourcepacks" /Q
 echo Deleted "resourcepacks" Folder in ".minecraft"
 echo Deleting Old "shaderpacks" Folder in ".minecraft"
-DEL "%AppData%\.minecraft\shaderpacks" /Q >>
+DEL "%AppData%\.minecraft\shaderpacks" /Q
 echo Deleted "shaderpacks" Folder in ".minecraft"
 echo Copying Mods to ".minecraft"
-COPY "%~dp0\mods" "%AppData%\.minecraft\mods" >>
+COPY "%~dp0\mods" "%AppData%\.minecraft\mods"
 echo Copied Mods to ".minecraft"
 echo Copying Configs to ".minecraft"
-COPY "%~dp0\config" "%AppData%\.minecraft\config" >>
+COPY "%~dp0\config" "%AppData%\.minecraft\config"
 echo Copied Configs to ".minecraft"
 echo Copying Resourcepacks to ".minecraft"
 COPY "%~dp0\resourcepacks" "%AppData%\.minecraft\resourcepacks"
@@ -131,7 +132,7 @@ echo Copied Resourcepacks to ".minecraft"
 echo Copying Shaderpacks to ".minecraft"
 COPY "%~dp0\shaderpacks" "%AppData%\.minecraft\shaderpacks"
 echo Copied Shaderpacks to ".minecraft"
-echo %DATE% %TIME% Mods, Configs and Resourcepacks Installed. >>
+echo %DATE% %TIME% Mods, Configs and Resourcepacks Installed.
 echo Mods and Configs Installed!
 echo Now Exiting...
 timeout 3 /nobreak
