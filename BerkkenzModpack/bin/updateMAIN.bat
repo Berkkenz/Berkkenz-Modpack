@@ -79,12 +79,12 @@ if exist response.txt (
 )
 
 :versiondownload
-if not exist "C:\Users\%username%\Desktop\BerkkenzModpack" (
+if not exist "C:\Users\%username%\Desktop\Berkkenz-Modpack-main" (
     echo Cloning repository...
-    git clone "https://github.com/Berkkenz/Berkkenz-Modpack.git" "C:\Users\%username%\Desktop\BerkkenzModpack"
+    git clone "https://github.com/Berkkenz/Berkkenz-Modpack.git" "%~dp0..\.."
 ) else (
     echo Updating repository...
-    cd /d "C:\Users\%username%\Desktop\BerkkenzModpack"
+    cd /d "%~dp0..\.."
     git pull origin main
 )
 
