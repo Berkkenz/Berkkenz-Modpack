@@ -86,7 +86,7 @@ if not exist "%userprofile%\Desktop\BerkkenzModpack" (
 ) else (
     echo Updating repository...
     cd "%userprofile%\Desktop\BerkkenzModpack"
-    git pull origin master  REM or replace 'master' with the branch you want to pull
+    git pull origin main  REM or replace 'master' with the branch you want to pull
 )
 
 msg * "Files Are Updated, Restarting Installer...
