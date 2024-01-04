@@ -6,7 +6,8 @@ echo Starting Berkkenz Modpack Installation.
 timeout 4
 cls
 REM Minecraft Check
-if exist "C:\Users\%Username%\AppData\Roaming\.minecraft" (
+if exist "%appdata%\.minecraft" (
+	echo Minecraft Exists!
     goto :JavaCheck
 ) else (
     goto :NoMC
@@ -15,6 +16,7 @@ if exist "C:\Users\%Username%\AppData\Roaming\.minecraft" (
 :JavaCheck
 cls
 if exist "%ProgramFiles%\Java\jre-1.8\bin\java.exe" (
+	echo Java 1.8 Present!
     goto :JavaCheckTwo
 ) else (
     goto :JavaInstallOne
@@ -22,6 +24,7 @@ if exist "%ProgramFiles%\Java\jre-1.8\bin\java.exe" (
 
 :JavaCheckTwo
 if exist "%ProgramFiles%\Java\jdk-17\bin\java.exe" (
+	echo Java 17.0.9 Present!
     goto :VersionCheck
 ) else (
     goto :JavaInstallTwo
@@ -29,6 +32,7 @@ if exist "%ProgramFiles%\Java\jdk-17\bin\java.exe" (
 
 :VersionCheck
 if exist "%Appdata%\.minecraft\versions\1.19.2" (
+	echo Version 1.19.2 Present!
 	goto :ForgeCheck
 ) else (
 	goto :VersionDL
@@ -36,6 +40,7 @@ if exist "%Appdata%\.minecraft\versions\1.19.2" (
 
 :ForgeCheck
 if exist "%Appdata%\.minecraft\versions\1.19.2-forge-43.3.5" (
+	echo Forge 1.19.2 Present!
 	goto :Installation
 ) else (
 	goto :ForgeInstall
@@ -129,7 +134,7 @@ echo Copied Shaderpacks to ".minecraft"
 echo %DATE% %TIME% Mods, Configs and Resourcepacks Installed. >>
 echo Mods and Configs Installed!
 echo Now Exiting...
-timeout 3
+timeout 3 /nobreak
 goto :exit
 
 :NoMC
