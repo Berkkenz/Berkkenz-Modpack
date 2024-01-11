@@ -36,6 +36,7 @@ if not exist "%LocalAppData%\Microsoft\WinGet\Links\jq.exe" (
 )
 
 :gitinstall
+cls
 echo Downloading Git Installer...
 curl -L -o %userprofile%\Downloads\Git-2.43.0-64-bit.exe https://github.com/git-for-windows/git/releases/download/v2.43.0.windows.1/Git-2.43.0-64-bit.exe
 echo Installing Git...
@@ -70,33 +71,33 @@ if exist response.txt (
 	set "updated=true"
 	cls
     echo You Are Up-To-Date!
-	timeout 4 /nobreak
+	timeout 3 /nobreak
 	goto :exit
 ) else (
 	cls
     echo Starting Update for Berkkenz Modpack...
-	timeout 4 /nobreak
+	timeout 3 /nobreak
 	goto :versiondownload
 	pause
 )
 
 :versiondownload
-echo %cd%
 cd /d %~dp0..\..
 echo %cd%
-pause
 if not exist "%~dp0.git" (
     git init
     git remote add origin https://github.com/Berkkenz/Berkkenz-Modpack.git
 )
 
+cls
 git fetch origin
 if %errorlevel% neq 0 (
 	echo Error: Git Fetch Failed.
 	pause
 	exit /b 1
 )
-	
+
+cls
 git reset --hard origin/main
 if %errorlevel% neq 0 (
 	echo Error: Git Reset Failed.
