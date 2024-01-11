@@ -87,6 +87,9 @@ if not exist "%~dp0\.git" (
 
 git fetch origin
 git reset --hard origin/main
+for /d %%i in (*) do (
+    cd "%%i"
+    echo Updating %%i...
 pause
 timeout /nobreak 5
 
