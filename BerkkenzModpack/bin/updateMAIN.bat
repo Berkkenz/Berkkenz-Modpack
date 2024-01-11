@@ -79,22 +79,14 @@ if exist response.txt (
 )
 
 :versiondownload
-if not exist "C:\Users\%username%\Desktop\Berkkenz-Modpack-main" (
-    echo Cloning repository...
-    git clone --recursive "https://github.com/Berkkenz/Berkkenz-Modpack.git" "%~dp0..\.."
-) else (
-    echo Updating repository...
-    cd /d %~dp0..\..
-    echo Current directory before pull: %CD%
-    
-    git pull --recurse-submodules=on-demand origin main
-    
-    echo Current directory after pull: %CD%
-    git submodule update --recursive --remote
+cd /d %~dp0..\..
+if not exist "%~dp0\.git" (
+    git init
+    git remote add origin https://github.com/Berkkenz/Berkkenz-Modpack.git
 )
 
-set "updated=true"
-msg * "Files Are Updated, Restarting Installer...
+git fetch origin
+git reset --hard origin/master
 pause
 timeout /nobreak 5
 
