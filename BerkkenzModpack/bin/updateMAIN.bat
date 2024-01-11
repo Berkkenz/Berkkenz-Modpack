@@ -92,12 +92,14 @@ if %errorlevel% neq 0 (
 	echo Error: Git Fetch Failed.
 	pause
 	exit /b %errorlevel%
+)
 	
 git reset --hard origin/main
 if %errorlevel% neq 0 (
 	echo Error: Git Reset Failed.
 	pause
 	exit /b %errorlevel%
+)
 	
 for /r %%i in (.git) do (
     if exist "%%~dpi" (
