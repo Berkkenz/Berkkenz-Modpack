@@ -65,7 +65,7 @@ if errorlevel 1 (
 echo Version Check
 powershell -command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Berkkenz/Berkkenz-Modpack/main/BerkkenzModpack/1.0.txt', 'response.txt')"
 if exist response.txt (
-	set "updated="
+	set "updated=true"
 	cls
     echo You Are Up-To-Date!
 	timeout 4 /nobreak
@@ -86,11 +86,35 @@ if not exist "%~dp0\.git" (
 )
 
 git fetch origin
+if %errorlevel% neq 0 (
+	echo Error: Git Fetch Failed.
+	exit /b %errorlevel%
+	
 git reset --hard origin/main
-for /d %%i in (*) do (
-    cd "%%i"
-    echo Updating %%i...
+if %errorlevel% neq 0 (
+	echo Error: Git Reset Failed.
+	exit /b %errorlevel%
+	
+for /r %%i in (.git) do (
+    if exist "%%~dpi" (
+        echo Updating "%%~dpi"...
+        pushd "%%~dpi"
+        git fetch origin
+		if %errorlevel% neq 0 (
+            echo Error: Git fetch failed in subdirectory "%%~dpi"
+            exit /b %errorlevel%
+        )
+        git reset --hard origin/main
+		if %errorlevel% neq 0 (
+            echo Error: Git reset failed in subdirectory "%%~dpi"
+            exit /b %errorlevel%
+        )
+        popd
+    )
+)
 pause
+set updated=true
+echo Update Installed!
 timeout /nobreak 5
 
 :exit

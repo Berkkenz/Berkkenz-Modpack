@@ -1,11 +1,11 @@
 @echo off
 :recheck
 
-call "%~dp0\bin\updateMAIN.bat"
-if %updated%==true (
-	goto :recheck
-) else (
+if "%updated%==true" (
 	goto :start
+) else (
+	call "%~dp0\bin\updateMAIN.bat"
+	goto :recheck
 )
 
 :start
@@ -56,35 +56,29 @@ if exist "%Appdata%\.minecraft\versions\1.19.2-forge-43.3.5" (
 
 :JavaInstallOne
 cls
-echo Starting Java Runtime 1.8 Download...
-start /WAIT %~dp0\bin\jre-8u391-windows-x64.exe /s
-if errorlevel 1 (
+call %~dp0\bin\JavaInstallTwo.bat
+if %errorlevel% neq 0 (
 	echo Failed to Install Java 1.8.
 	pause
-	goto :exit
+	exit /b %errorlevel%
 ) else (
 	echo Java 1.8 Installed Successfully!
 	timeout 2
 	goto :JavaCheck
+)
 
 :JavaInstallTwo
 cls
-echo Starting Java 17.0.9 Download...
-set "url=https://download.oracle.com/java/17/archive/jdk-17.0.9_windows-x64_bin.exe"
-set "installer=%userprofile%\Downloads\jdk-17.0.9_windows-x64_bin.exe"
-echo Downloading Java 17.0.9...
-bitsadmin /transfer "Downloading Java Runtime 17.0.9" %url% %installer%
-echo Installing Java 17.0.9
-start /WAIT %userprofile%\Downloads\jdk-17.0.9_windows-x64_bin.exe /s
-del %installer% /s
-if errorlevel 1 (
+call %~dp0\bin\JavaInstallOne.bat
+if %errorlevel% neq 0 (
 	echo Failed to Install Java 17.0.9.
 	pause
-	goto :exit
+	exit /b %errorlevel%
 ) else (
 	echo Java 17.0.9 Installed Successfully!
 	timeout 2
 	goto :JavaCheck
+)
 
 :VersionDL
 cls
@@ -101,12 +95,11 @@ if errorlevel 1 (
 :ForgeInstall
 cls
 echo Installing Forge...
-java -jar %~dp0\bin\forge-1.19.2-43.3.5-installer.jar /s
-cls
-if errorlevel 1 (
+call %~dp0\bin\ForgeInstall.bat
+if %errorlevel% neq 0 (
 	echo Failed to Install Forge.
 	pause
-	goto :exit
+	exit /b %errorlevel%
 ) else (
 	echo Forge Installed Successfully!
 	timeout 2
@@ -148,7 +141,7 @@ goto :exit
 :NoMC
 echo Minecraft Not Installed On C: Drive, Contact The Berkken Mans. (unless you know where the files should be)
 pause
-goto :exit
+exit /b 1
 
 :NoFolder
 echo The "Berkken's Modpack" folder is not on your desktop.
