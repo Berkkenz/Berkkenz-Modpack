@@ -113,7 +113,7 @@ for /r %%i in (.git) do (
     )
 )
 pause
-set updated=true
+set "updated=true"
 echo Update Installed!
 timeout /nobreak 5
 

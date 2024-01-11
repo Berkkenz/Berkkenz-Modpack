@@ -1,14 +1,6 @@
 @echo off
-:recheck
+call "%~dp0\bin\updateMAIN.bat
 
-if "%updated%==true" (
-	goto :start
-) else (
-	call "%~dp0\bin\updateMAIN.bat"
-	goto :recheck
-)
-
-:start
 cls
 echo Starting Berkkenz Modpack Installation.
 timeout 4
