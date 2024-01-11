@@ -104,17 +104,17 @@ if %errorlevel% neq 0 (
 for /r %%i in (.git) do (
     if exist "%%~dpi" (
         echo Updating "%%~dpi"...
-        pushd "%%~dpi"
+        pushd "%%~dpi.."
         git fetch origin
-		if %errorlevel% neq 0 (
+        if %errorlevel% neq 0 (
             echo Error: Git fetch failed in subdirectory "%%~dpi"
-			pause
+            pause
             exit /b %errorlevel%
         )
         git reset --hard origin/main
-		if %errorlevel% neq 0 (
+        if %errorlevel% neq 0 (
             echo Error: Git reset failed in subdirectory "%%~dpi"
-			pause
+            pause
             exit /b %errorlevel%
         )
         popd
