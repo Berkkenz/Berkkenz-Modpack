@@ -1,5 +1,11 @@
 @echo off
+
 call "%~dp0\BerkkenzModpack\bin\updateMAIN.bat" "%~dp0"
+if %errorlevel% neq 0 (
+	echo Error: Update Failed.
+	pause
+	exit /b 1
+)
 
 cls
 echo Starting Berkkenz Modpack Installation.
