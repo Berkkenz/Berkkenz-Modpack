@@ -2,7 +2,10 @@
 
 call "%~dp0\BerkkenzModpack\bin\updateMAIN.bat" "%~dp0"
 if %errorlevel% neq 0 (
-	echo Error: Update Failed.
+	cls
+	echo If this is your first time running this, just run Setup.bat again.
+	echo .
+	echo If it isn't your first time running this, the setup has failed.
 	pause
 	exit /b 1
 )
