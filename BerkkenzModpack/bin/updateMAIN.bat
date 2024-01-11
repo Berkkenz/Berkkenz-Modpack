@@ -80,6 +80,8 @@ if exist response.txt (
 
 :versiondownload
 cd /d %~dp0..\..
+echo %cd%
+pause
 if not exist "%~dp0\.git" (
     git init
     git remote add origin https://github.com/Berkkenz/Berkkenz-Modpack.git
@@ -88,11 +90,13 @@ if not exist "%~dp0\.git" (
 git fetch origin
 if %errorlevel% neq 0 (
 	echo Error: Git Fetch Failed.
+	pause
 	exit /b %errorlevel%
 	
 git reset --hard origin/main
 if %errorlevel% neq 0 (
 	echo Error: Git Reset Failed.
+	pause
 	exit /b %errorlevel%
 	
 for /r %%i in (.git) do (
@@ -102,11 +106,13 @@ for /r %%i in (.git) do (
         git fetch origin
 		if %errorlevel% neq 0 (
             echo Error: Git fetch failed in subdirectory "%%~dpi"
+			pause
             exit /b %errorlevel%
         )
         git reset --hard origin/main
 		if %errorlevel% neq 0 (
             echo Error: Git reset failed in subdirectory "%%~dpi"
+			pause
             exit /b %errorlevel%
         )
         popd
