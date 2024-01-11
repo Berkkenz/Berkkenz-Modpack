@@ -86,7 +86,7 @@ if not exist "%~dp0\.git" (
 )
 
 git fetch origin
-git reset --hard origin/master
+git reset --hard origin/main
 pause
 timeout /nobreak 5
 
