@@ -1,5 +1,5 @@
 @echo off
-call "%~dp0\bin\updateMAIN.bat
+call "%~dp0\BerkkenzModpack\bin\updateMAIN.bat" "%~dp0"
 
 cls
 echo Starting Berkkenz Modpack Installation.
@@ -48,7 +48,7 @@ if exist "%Appdata%\.minecraft\versions\1.19.2-forge-43.3.5" (
 
 :JavaInstallOne
 cls
-call %~dp0\bin\JavaInstallTwo.bat
+call %~dp0\BerkkenzModpack\bin\JavaInstallTwo.bat
 if %errorlevel% neq 0 (
 	echo Failed to Install Java 1.8.
 	pause
@@ -61,7 +61,7 @@ if %errorlevel% neq 0 (
 
 :JavaInstallTwo
 cls
-call %~dp0\bin\JavaInstallOne.bat
+call %~dp0\BerkkenzModpack\bin\JavaInstallOne.bat
 if %errorlevel% neq 0 (
 	echo Failed to Install Java 17.0.9.
 	pause
@@ -74,7 +74,7 @@ if %errorlevel% neq 0 (
 
 :VersionDL
 cls
-xcopy /i /s "%~dp0\versions" "%AppData%\.minecraft\versions"
+xcopy /i /s "%~dp0\BerkkenzModpack\versions" "%AppData%\.minecraft\versions"
 if errorlevel 1 (
 	echo Failed to Install Version.
 	pause
@@ -87,7 +87,7 @@ if errorlevel 1 (
 :ForgeInstall
 cls
 echo Installing Forge...
-call %~dp0\bin\ForgeInstall.bat
+call %~dp0\BerkkenzModpack\bin\ForgeInstall.bat
 if %errorlevel% neq 0 (
 	echo Failed to Install Forge.
 	pause
@@ -113,16 +113,16 @@ echo Deleting Old "shaderpacks" Folder in ".minecraft"
 DEL "%AppData%\.minecraft\shaderpacks" /Q
 echo Deleted "shaderpacks" Folder in ".minecraft"
 echo Copying Mods to ".minecraft"
-COPY "%~dp0\mods" "%AppData%\.minecraft\mods"
+COPY "%~dp0\BerkkenzModpack\mods" "%AppData%\.minecraft\mods"
 echo Copied Mods to ".minecraft"
 echo Copying Configs to ".minecraft"
-COPY "%~dp0\config" "%AppData%\.minecraft\config"
+COPY "%~dp0\BerkkenzModpack\config" "%AppData%\.minecraft\config"
 echo Copied Configs to ".minecraft"
 echo Copying Resourcepacks to ".minecraft"
-COPY "%~dp0\resourcepacks" "%AppData%\.minecraft\resourcepacks"
+COPY "%~dp0\BerkkenzModpack\resourcepacks" "%AppData%\.minecraft\resourcepacks"
 echo Copied Resourcepacks to ".minecraft"
 echo Copying Shaderpacks to ".minecraft"
-COPY "%~dp0\shaderpacks" "%AppData%\.minecraft\shaderpacks"
+COPY "%~dp0\BerkkenzModpack\shaderpacks" "%AppData%\.minecraft\shaderpacks"
 echo Copied Shaderpacks to ".minecraft"
 echo %DATE% %TIME% Mods, Configs and Resourcepacks Installed.
 echo Mods and Configs Installed!

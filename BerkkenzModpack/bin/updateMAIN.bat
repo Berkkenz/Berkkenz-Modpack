@@ -1,5 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
+set "callerPath=%~1"
+cd /d %callerPath%
 
 echo Checking Dependancies...
 
@@ -79,10 +81,11 @@ if exist response.txt (
 )
 
 :versiondownload
+echo %cd%
 cd /d %~dp0..\..
 echo %cd%
 pause
-if not exist "%~dp0\.git" (
+if not exist "%~dp0.git" (
     git init
     git remote add origin https://github.com/Berkkenz/Berkkenz-Modpack.git
 )
