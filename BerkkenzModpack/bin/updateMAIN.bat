@@ -94,14 +94,14 @@ git fetch origin
 if %errorlevel% neq 0 (
 	echo Error: Git Fetch Failed.
 	pause
-	exit /b %errorlevel%
+	exit /b 1
 )
 	
 git reset --hard origin/main
 if %errorlevel% neq 0 (
 	echo Error: Git Reset Failed.
 	pause
-	exit /b %errorlevel%
+	exit /b 2
 )
 	
 for /d /r %%d in (*) do (
