@@ -72,7 +72,7 @@ if exist response.txt (
 	cls
     echo You Are Up-To-Date!
 	timeout 3 /nobreak
-	goto :exit
+	exit /b 0
 ) else (
 	cls
     echo Starting Update for Berkkenz Modpack...
@@ -127,7 +127,7 @@ for /d /r %%d in (*) do (
 pause
 set "updated=true"
 echo Update Installed!
-timeout /nobreak 5
+timeout /nobreak 3
 
 :exit
 endlocal
