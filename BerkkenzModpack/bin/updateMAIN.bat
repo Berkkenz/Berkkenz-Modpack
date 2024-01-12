@@ -104,7 +104,8 @@ if %errorlevel% neq 0 (
 	pause
 	exit /b 2
 )
-	
+
+cls	
 for /d /r %%d in (*) do (
     if exist "%%d\.git" (
         echo Updating "%%d"...
@@ -124,7 +125,7 @@ for /d /r %%d in (*) do (
         popd
     )
 )
-pause
+
 set "updated=true"
 echo Update Installed!
 timeout /nobreak 3
