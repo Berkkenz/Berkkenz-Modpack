@@ -93,7 +93,6 @@ cls
 git fetch origin
 if %errorlevel% neq 0 (
 	echo Error: Git Fetch Failed.
-	pause
 	exit /b 1
 )
 
@@ -101,7 +100,6 @@ cls
 git reset --hard origin/main
 if %errorlevel% neq 0 (
 	echo Error: Git Reset Failed.
-	pause
 	exit /b 2
 )
 
