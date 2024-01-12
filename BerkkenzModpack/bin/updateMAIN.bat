@@ -30,7 +30,7 @@ if not exist "%ProgramFiles%\Git\bin\git.exe" (
 :jqcheck
 echo JQ Check
 if not exist "%LocalAppData%\Microsoft\WinGet\Links\jq.exe" (
-	goto :jqinstall
+	goto :versioncheck
 ) else (
 	goto :versioncheck
 )
