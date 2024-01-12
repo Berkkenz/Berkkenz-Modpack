@@ -14,6 +14,7 @@ if %errorlevel% neq 0 (
 	)
 )
 
+set markerFile=%appdata%\batchRunMarker.txt
 echo Run marker set on %date% at %time% >> "%markerFile%"
 cls
 echo Starting Berkkenz Modpack Installation.
