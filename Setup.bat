@@ -144,15 +144,5 @@ echo Minecraft Not Installed On C: Drive, Contact The Berkken Mans. (unless you 
 pause
 exit /b 1
 
-:NoFolder
-echo The "Berkken's Modpack" folder is not on your desktop.
-echo 	Please extract the folder in
-echo 	
-echo 	BerkkenzModpack.zip
-echo	
-echo 	To your desktop, then run the setup again.
-pause
-goto :exit
-
 :exit
 exit
